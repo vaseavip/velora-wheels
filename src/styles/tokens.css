@@ -1,0 +1,66 @@
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --color-void: #08080a;
+  --color-black: #0c0c0e;
+  --color-charcoal: #141417;
+  --color-graphite: #1b1b1f;
+  --color-surface: #212126;
+  --color-surface-raised: #29292e;
+
+  /* Lines & overlays */
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+  --color-scrim: rgba(6, 6, 7, 0.55);
+  --color-scrim-strong: rgba(6, 6, 7, 0.82);
+
+  /* Text */
+  --color-text: #f3f2ee;
+  --color-text-muted: #a3a3aa;
+  --color-text-faint: #6c6c74;
+
+  /* Metal / accent */
+  --color-silver: #cfd0d6;
+  --color-metal: #8d8f97;
+  --color-accent: #b8925a;
+  --color-accent-soft: rgba(184, 146, 90, 0.35);
+
+  /* Type */
+  --font-display: "Archivo", "Arial Narrow", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+
+  /* Fluid type scale */
+  --fs-display-xl: clamp(3.2rem, 3.2vw + 2.6rem, 7.5rem);
+  --fs-display-lg: clamp(2.4rem, 2.4vw + 2rem, 5rem);
+  --fs-display-md: clamp(1.8rem, 1.4vw + 1.5rem, 3rem);
+  --fs-heading: clamp(1.4rem, 0.8vw + 1.2rem, 1.9rem);
+  --fs-body-lg: clamp(1.05rem, 0.3vw + 1rem, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.72rem;
+
+  /* Spacing */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 9rem;
+
+  --container-max: 1440px;
+  --edge-pad: clamp(1.25rem, 4vw, 4rem);
+
+  /* Motion */
+  --ease-precise: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 240ms;
+  --dur-med: 480ms;
+  --dur-slow: 900ms;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+}

@@ -1,0 +1,58 @@
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.sheen {
+  position: absolute;
+  inset: -10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(216, 178, 128, 0.16),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-soft);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stage:hover .sheen,
+.stage:focus-within .sheen {
+  opacity: 1;
+}
+
+.imageWrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  will-change: transform;
+}
+
+.imageInner {
+  width: 100%;
+  transition: transform var(--dur-slow) var(--ease-precise);
+}
+
+.stage:hover .imageInner,
+.stage:focus-within .imageInner {
+  transform: scale(1.015);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageWrap,
+  .sheen {
+    transition: none;
+  }
+}

@@ -1,0 +1,149 @@
+.section {
+  position: relative;
+  background: var(--color-black);
+  padding-block: var(--space-3xl) var(--space-2xl);
+}
+
+.intro {
+  margin-bottom: var(--space-2xl);
+}
+
+.heading {
+  font-size: var(--fs-display-lg);
+  margin-top: var(--space-xs);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(280px, auto);
+  gap: var(--space-lg);
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle at 50% 30%, var(--color-charcoal), var(--color-black) 75%);
+  border: 1px solid var(--color-line);
+  overflow: hidden;
+}
+
+.visual {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-xl) var(--space-lg) 30%;
+}
+
+.item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(6, 6, 7, 0.92) 0%, rgba(6, 6, 7, 0.55) 32%, transparent 62%);
+  pointer-events: none;
+}
+
+.meta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.index {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.2em;
+  color: var(--color-text-faint);
+}
+
+.name {
+  font-size: var(--fs-heading);
+  letter-spacing: 0.01em;
+}
+
+.specs {
+  font-size: var(--fs-small);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.desc {
+  margin-top: var(--space-2xs);
+  max-width: 34ch;
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+}
+
+.feature {
+  grid-column: 1 / 8;
+  grid-row: 1 / 3;
+}
+
+.feature .visual {
+  padding-bottom: 32%;
+}
+
+.feature .name {
+  font-size: var(--fs-display-md);
+}
+
+.stackedTop,
+.stackedBottom {
+  grid-column: 8 / 13;
+}
+
+.stackedTop {
+  grid-row: 1 / 2;
+}
+
+.stackedBottom {
+  grid-row: 2 / 3;
+}
+
+.row {
+  grid-column: span 4;
+}
+
+@media (max-width: 1080px) {
+  .feature {
+    grid-column: 1 / 13;
+    grid-row: auto;
+  }
+
+  .stackedTop,
+  .stackedBottom {
+    grid-column: 1 / 7;
+  }
+
+  .row {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(320px, auto);
+  }
+
+  .feature,
+  .stackedTop,
+  .stackedBottom,
+  .row {
+    grid-column: 1 / 2;
+    grid-row: auto;
+  }
+
+  .visual {
+    padding-bottom: 34%;
+  }
+}
