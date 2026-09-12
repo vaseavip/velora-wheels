@@ -43,8 +43,8 @@ export function WheelStage({ wheel, maxOffset = 14, priority = false, className 
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : "auto"}
             decoding="async"
-            width={1200}
-            height={1200}
+            width={wheel.imageWidth}
+            height={wheel.imageHeight}
           />
         </div>
       </div>

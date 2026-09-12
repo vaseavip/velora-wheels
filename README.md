@@ -12,12 +12,13 @@ editorial (non-templated) product layout.
 
 ## Description
 
-VELORA WHEELS shows a 6-model wheel collection as floating product photography
-(no cards, no drop-shadowed rectangles), a pinned scroll-driven hero sequence that
-carries the product through several narrative states, a brand-fit section for
-BMW / Mercedes-Benz / Audi, and a craftsmanship section built from macro detail
-photography revealed on scroll. There is no cart, checkout, account system, or
-backend — every interaction is presentation-only.
+VELORA WHEELS shows a 5-model wheel collection as isolated, transparent product
+cutouts — no cards, no rectangular photo backgrounds, no drop-shadowed boxes — each
+wheel floats directly in the page's own dark space. A pinned scroll-driven hero
+sequence carries one wheel through several narrative states, a brand-fit section
+covers BMW / Mercedes-Benz / Audi, and a craftsmanship section is built from macro
+detail photography revealed on scroll. There is no cart, checkout, account system,
+or backend — every interaction is presentation-only.
 
 ## Technologies
 
@@ -28,17 +29,25 @@ backend — every interaction is presentation-only.
   scroll-storytelling sequence in the hero and simple scroll reveals elsewhere;
   cursor-follow parallax is done with `gsap.quickTo` for damped, clamped motion
 - **sharp** (build-time only) — crops/resizes/converts sourced photography to WebP
+- **@imgly/background-removal-node** (build-time only) — local/offline background
+  removal used once to produce the five transparent wheel cutouts; not part of the
+  shipped app bundle
 
 ## Features
 
+- Every wheel is a real alpha-transparent cutout, not a rectangular photo — the
+  page's dark background shows through the spoke gaps, so each wheel genuinely
+  floats in the layout instead of sitting in a card or frame
 - Pinned, scroll-scrubbed hero sequence (desktop): title → "Precision." →
   "Engineered for motion." → macro crossfade detail → transition into the collection,
   all on one continuous scroll-jacked wheel image — skipped entirely on mobile and
   for `prefers-reduced-motion` users, who get the full message as a static hero
-- An editorial, intentionally non-uniform collection grid (one large feature, two
-  stacked mid-size items, three small items — not "title + 3 identical cards")
-- Every wheel is presented as a bare product photograph (no card, no frame) with a
-  clamped, damped cursor-parallax drift and a cursor-follow light sheen on hover
+- An editorial collection layout where each of the 5 models has its own distinct
+  composition (minimal/centered, aggressive/bleeding off-frame, technical spec-sheet
+  framing, airy, grand-finale-centered) rather than repeating one card template
+- Each wheel has a clamped, damped cursor-parallax drift and a cursor-follow light
+  sheen on hover — small, slow, "heavy metal object" motion, not a snappy
+  mouse-follow
 - Clip-path "unmask" reveal + release-zoom on the four craftsmanship macro shots
 - Fully keyboard-accessible mobile menu (focus trap, `Escape` to close, focus
   restored on close) and a working skip-to-content link
@@ -55,7 +64,10 @@ src/
   hooks/        useReducedMotion, usePointerParallax, useScrollAnimation
   styles/       tokens.css (design tokens), global.css
 scripts/
-  process-images.mjs   crops/resizes/converts sourced photos to public/images/*.webp
+  process-images.mjs    crops/resizes/converts car & detail photos to public/images/*.webp
+  wheels-1-precrop.mjs  wheel isolation pipeline, step 1: crop to just the wheel
+  wheels-2-bgremove.mjs wheel isolation pipeline, step 2: local background removal
+  wheels-3-finalize.mjs wheel isolation pipeline, step 3: trim, anonymize badge, export
 public/images/  wheels/ details/ cars/ textures/   (final WebP assets served to the app)
 ```
 
@@ -63,22 +75,22 @@ public/images/  wheels/ details/ cars/ textures/   (final WebP assets served to 
 
 | Model | Size | Finish |
 |---|---|---|
-| VELORA AXIS | 21" | Satin Graphite |
+| VELORA AXIS | 21" | Brushed Titanium |
 | VELORA FORGE | 20" | Gloss Black |
-| VELORA VECTOR | 22" | Brushed Titanium |
-| VELORA ARC | 19" | Dark Bronze |
+| VELORA VECTOR | 22" | Satin Graphite |
+| VELORA ARC | 19" | Polished Chrome |
 | VELORA MONARCH | 21" | Brushed Silver |
-| VELORA NOVA | 20" | Gloss Black / Machined |
 
 ## Images
 
 All photography is real, sourced from Unsplash and Pexels under their free
-licenses — no AI-generated imagery anywhere on the site. Full attribution, source
-links, and the reasoning behind each crop (mostly: keeping a real manufacturer's
-badge out of frame, since these are presented as VELORA's own products) are in
-[`IMAGE_CREDITS.md`](./IMAGE_CREDITS.md). The crop/convert pipeline is in
-[`scripts/process-images.mjs`](./scripts/process-images.mjs) — re-run it with
-`npm run images:process` if the source photos in the pipeline's `SRC` folder change.
+licenses — no AI-generated imagery anywhere on the site. The five collection wheels
+are isolated, transparent cutouts (see Features above) produced by a disclosed
+three-step pipeline — precrop → local background removal → trim + badge
+anonymization + export — runnable end-to-end with `npm run wheels:isolate`. Car and
+detail photography goes through a simpler crop/resize/WebP pipeline via
+`npm run images:process`. Full attribution, source links, and the reasoning behind
+every crop and badge touch-up are in [`IMAGE_CREDITS.md`](./IMAGE_CREDITS.md).
 
 ## Installation
 

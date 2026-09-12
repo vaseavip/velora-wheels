@@ -143,8 +143,8 @@ export function Hero() {
                   className={`${styles.wheelImg} photo`}
                   src={heroWheel.image}
                   alt={`${heroWheel.name}, ${heroWheel.size} wheel in ${heroWheel.finish}`}
-                  width={1200}
-                  height={1200}
+                  width={heroWheel.imageWidth}
+                  height={heroWheel.imageHeight}
                   fetchPriority="high"
                   decoding="async"
                 />
@@ -153,8 +153,8 @@ export function Hero() {
                   className={`${styles.wheelImg} ${styles.wheelImgOverlay} photo`}
                   src={closeUp.image}
                   alt={closeUp.imageAlt}
-                  width={1200}
-                  height={1200}
+                  width={960}
+                  height={1184}
                   loading="lazy"
                   decoding="async"
                 />
