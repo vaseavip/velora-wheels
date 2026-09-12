@@ -21,13 +21,13 @@ export function FindYourFit() {
               primary content, so it must never depend on a scroll animation
               firing to become visible. */}
           <div className={styles.imageArea}>
-            {brandFits.map((brand) => (
+            {brandFits.map((brand, index) => (
               <img
                 key={brand.id}
                 src={brand.image}
                 alt={brand.imageAlt}
                 className={`${styles.image} photo ${brand.id === activeId ? styles.imageActive : ""}`}
-                loading="lazy"
+                loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
               />
             ))}

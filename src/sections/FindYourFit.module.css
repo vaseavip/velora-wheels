@@ -14,15 +14,20 @@
 }
 
 .stage {
-  display: grid;
-  grid-template-columns: 1fr 220px;
+  display: flex;
+  align-items: center;
   gap: var(--space-xl);
-  align-items: stretch;
 }
 
 .imageArea {
   position: relative;
-  aspect-ratio: 16 / 10;
+  flex: none;
+  width: min(48vw, 300px);
+  /* Classic padding-top aspect-ratio technique (instead of the CSS
+     `aspect-ratio` property) so sizing can't silently collapse on older
+     mobile browser engines — the box's height comes purely from this
+     padding since the images inside are position:absolute. */
+  padding-top: min(60vw, 375px);
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--color-black);
@@ -43,6 +48,7 @@
 }
 
 .tabs {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,16 +84,18 @@
 
 @media (max-width: 720px) {
   .stage {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .imageArea {
-    aspect-ratio: 4 / 3;
+    width: min(70vw, 320px);
+    padding-top: min(87.5vw, 400px);
   }
 
   .tabs {
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
   }
 
   .tab {
