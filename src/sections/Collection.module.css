@@ -92,7 +92,7 @@
 }
 
 .forge .wheelWrap {
-  width: min(60vw, 760px);
+  width: min(34vw, 380px);
   transform: translateX(6%);
 }
 
@@ -112,7 +112,7 @@
 
 .vector .wheelWrap {
   order: 2;
-  width: min(42vw, 480px);
+  width: min(34vw, 380px);
 }
 
 .vector .textBlock {
@@ -135,7 +135,7 @@
 
 .arc .wheelWrap {
   align-self: center;
-  width: min(32vw, 360px);
+  width: min(34vw, 380px);
 }
 
 .arc .textBlock {
@@ -152,7 +152,7 @@
 }
 
 .monarch .wheelWrap {
-  width: min(46vw, 560px);
+  width: min(34vw, 380px);
 }
 
 .monarch .textBlock {
@@ -174,7 +174,7 @@
 }
 
 .nova .wheelWrap {
-  width: min(58vw, 720px);
+  width: min(34vw, 380px);
   order: 2;
 }
 

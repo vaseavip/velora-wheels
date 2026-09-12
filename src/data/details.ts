@@ -13,21 +13,9 @@ export const detailShots: DetailShot[] = [
     caption: "Every spoke, intentional.",
   },
   {
-    id: "machining",
-    image: "/images/details/machining.webp",
-    imageAlt: "Close-up of precision-machined brushed metal surface",
-    caption: "Machined to a mirror line.",
-  },
-  {
-    id: "bolts",
-    image: "/images/details/bolts.webp",
-    imageAlt: "Macro close-up of wheel lug bolts and hub",
-    caption: "Held by exacting tolerance.",
-  },
-  {
-    id: "tread",
-    image: "/images/details/tread.webp",
-    imageAlt: "Macro close-up of tire tread against the wheel edge",
+    id: "bmw-detail",
+    image: "/images/cars/bmw-detail.webp",
+    imageAlt: "Close-up of a chrome multi-spoke wheel on a BMW, autumn leaves in the foreground",
     caption: "Where design meets the road.",
   },
 ];

@@ -31,11 +31,6 @@ export function BrandExperience() {
             <span className={styles.brandName}>{bmw.name}</span>
             <span className={styles.tag}>{bmw.tag}</span>
           </figcaption>
-          {bmw.detailImage ? (
-            <div className={styles.inset}>
-              <img src={bmw.detailImage} alt={bmw.detailAlt} className="photo" loading="lazy" decoding="async" />
-            </div>
-          ) : null}
         </Reveal>
 
         <Reveal as="figure" className={styles.mercedesFrame} delay={0.08}>

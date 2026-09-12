@@ -95,10 +95,6 @@
   filter: drop-shadow(0 50px 70px rgba(0, 0, 0, 0.6));
 }
 
-.wheelImgOverlay {
-  opacity: 0;
-}
-
 .storyCaption {
   position: absolute;
   top: 50%;
@@ -115,25 +111,6 @@
   pointer-events: none;
   text-align: center;
   white-space: nowrap;
-}
-
-.detailCaption {
-  position: absolute;
-  bottom: 12%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  opacity: 0;
-  visibility: hidden;
-  text-align: center;
-  pointer-events: none;
-}
-
-.detailCaption p {
-  margin-top: var(--space-2xs);
-  font-family: var(--font-display);
-  font-size: var(--fs-display-md);
-  font-weight: 800;
 }
 
 .scrollCue {
@@ -206,9 +183,7 @@
   }
 
   .storyCaption,
-  .detailCaption,
-  .scrollCue,
-  .wheelImgOverlay {
+  .scrollCue {
     display: none;
   }
 }

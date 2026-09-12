@@ -5,8 +5,6 @@ export interface BrandFeature {
   tag: string;
   image: string;
   imageAlt: string;
-  detailImage?: string;
-  detailAlt?: string;
 }
 
 export const brands: BrandFeature[] = [
@@ -17,8 +15,6 @@ export const brands: BrandFeature[] = [
     tag: "Precision / Performance",
     image: "/images/cars/bmw.webp",
     imageAlt: "Black BMW M4 photographed front 3/4, low angle, alloy wheel prominent",
-    detailImage: "/images/cars/bmw-detail.webp",
-    detailAlt: "Close-up of a chrome multi-spoke wheel on a BMW, autumn leaves in the foreground",
   },
   {
     id: "mercedes",

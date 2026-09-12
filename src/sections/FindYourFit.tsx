@@ -17,7 +17,10 @@ export function FindYourFit() {
         </Reveal>
 
         <div className={styles.stage}>
-          <Reveal as="div" className={styles.imageArea} delay={0.1}>
+          {/* Plain div, not a scroll-triggered Reveal: this is the section's
+              primary content, so it must never depend on a scroll animation
+              firing to become visible. */}
+          <div className={styles.imageArea}>
             {brandFits.map((brand) => (
               <img
                 key={brand.id}
@@ -28,7 +31,7 @@ export function FindYourFit() {
                 decoding="async"
               />
             ))}
-          </Reveal>
+          </div>
 
           {/* Interactive controls render immediately — never gated behind a
               scroll-triggered reveal, so they're always clickable/focusable. */}
