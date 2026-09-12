@@ -7,9 +7,9 @@ export interface DetailShot {
 
 export const detailShots: DetailShot[] = [
   {
-    id: "spokes",
-    image: "/images/details/spokes.webp",
-    imageAlt: "Macro close-up of alloy wheel spokes converging at the center hub",
+    id: "gallery",
+    image: "/images/details/wheel-gallery.webp",
+    imageAlt: "A forged wheel resting on a textured studio surface, dramatic side lighting",
     caption: "Every spoke, intentional.",
   },
   {

@@ -12,13 +12,15 @@ editorial (non-templated) product layout.
 
 ## Description
 
-VELORA WHEELS shows a 5-model wheel collection as isolated, transparent product
+VELORA WHEELS shows a 6-model wheel collection as isolated, transparent product
 cutouts — no cards, no rectangular photo backgrounds, no drop-shadowed boxes — each
 wheel floats directly in the page's own dark space. A pinned scroll-driven hero
-sequence carries one wheel through several narrative states, a brand-fit section
-covers BMW / Mercedes-Benz / Audi, and a craftsmanship section is built from macro
-detail photography revealed on scroll. There is no cart, checkout, account system,
-or backend — every interaction is presentation-only.
+sequence carries one wheel through several narrative states, a "Built for the Road"
+section presents BMW / Mercedes-Benz / Audi in three different compositions, a
+"Find Your Fit" switcher lets you preview a brand-specific wheel, and a
+craftsmanship section is built from macro detail photography revealed on scroll.
+There is no cart, checkout, account system, or backend — every interaction is
+presentation-only.
 
 ## Technologies
 
@@ -28,27 +30,32 @@ or backend — every interaction is presentation-only.
 - **GSAP + ScrollTrigger** — the only motion library, used for both the pinned
   scroll-storytelling sequence in the hero and simple scroll reveals elsewhere;
   cursor-follow parallax is done with `gsap.quickTo` for damped, clamped motion
-- **sharp** (build-time only) — crops/resizes/converts sourced photography to WebP
-- **@imgly/background-removal-node** (build-time only) — local/offline background
-  removal used once to produce the five transparent wheel cutouts; not part of the
-  shipped app bundle
+- **sharp** (build-time only) — resizes/converts sourced photography to WebP
 
 ## Features
 
-- Every wheel is a real alpha-transparent cutout, not a rectangular photo — the
-  page's dark background shows through the spoke gaps, so each wheel genuinely
+- Every wheel is a real alpha-transparent product PNG, not a rectangular photo —
+  the page's dark background shows through the spoke gaps, so each wheel genuinely
   floats in the layout instead of sitting in a card or frame
 - Pinned, scroll-scrubbed hero sequence (desktop): title → "Precision." →
   "Engineered for motion." → macro crossfade detail → transition into the collection,
   all on one continuous scroll-jacked wheel image — skipped entirely on mobile and
   for `prefers-reduced-motion` users, who get the full message as a static hero
-- An editorial collection layout where each of the 5 models has its own distinct
+- An editorial collection layout where each of the 6 models has its own distinct
   composition (minimal/centered, aggressive/bleeding off-frame, technical spec-sheet
-  framing, airy, grand-finale-centered) rather than repeating one card template
+  framing, airy, grand-centered, oversized closing statement) rather than repeating
+  one card template
 - Each wheel has a clamped, damped cursor-parallax drift and a cursor-follow light
   sheen on hover — small, slow, "heavy metal object" motion, not a snappy
   mouse-follow
-- Clip-path "unmask" reveal + release-zoom on the four craftsmanship macro shots
+- "Built for the Road": three brand features (BMW/Mercedes/Audi) laid out as three
+  different compositions — one large with a secondary detail inset, one offset/
+  staggered, one wide banner — not three identical cards
+- "Find Your Fit": a simple frontend-only brand switcher (click/hover BMW,
+  Mercedes-Benz, or Audi) that crossfades to a wheel fitted to that brand; the
+  interactive tabs are never gated behind a scroll-reveal animation, so they're
+  always clickable regardless of scroll history
+- Clip-path "unmask" reveal + release-zoom on the craftsmanship macro shots
 - Fully keyboard-accessible mobile menu (focus trap, `Escape` to close, focus
   restored on close) and a working skip-to-content link
 - `prefers-reduced-motion` is respected everywhere motion is used — GSAP scroll
@@ -59,38 +66,34 @@ or backend — every interaction is presentation-only.
 ```
 src/
   components/   Navbar, Footer, Button, Reveal, WheelStage, DetailReveal
-  sections/     Hero, Collection, BrandExperience, Craftsmanship, About
-  data/         wheels.ts, brands.ts, details.ts
+  sections/     Hero, Collection, BrandExperience, FindYourFit, Craftsmanship, About
+  data/         wheels.ts, brands.ts, fit.ts, details.ts
   hooks/        useReducedMotion, usePointerParallax, useScrollAnimation
   styles/       tokens.css (design tokens), global.css
 scripts/
-  process-images.mjs    crops/resizes/converts car & detail photos to public/images/*.webp
-  wheels-1-precrop.mjs  wheel isolation pipeline, step 1: crop to just the wheel
-  wheels-2-bgremove.mjs wheel isolation pipeline, step 2: local background removal
-  wheels-3-finalize.mjs wheel isolation pipeline, step 3: trim, anonymize badge, export
-public/images/  wheels/ details/ cars/ textures/   (final WebP assets served to the app)
+  process-images.mjs      crops/resizes/converts detail-texture photos to WebP
+  wheels-export-new.mjs   converts the supplied transparent wheel PNGs to WebP
+  process-new-photos.mjs  converts the supplied car & brand-fit photos to WebP
+public/images/  wheels/ details/ cars/ fit/   (final WebP assets served to the app)
 ```
 
 ## The collection
 
 | Model | Size | Finish |
 |---|---|---|
-| VELORA AXIS | 21" | Brushed Titanium |
-| VELORA FORGE | 20" | Gloss Black |
-| VELORA VECTOR | 22" | Satin Graphite |
-| VELORA ARC | 19" | Polished Chrome |
-| VELORA MONARCH | 21" | Brushed Silver |
+| VELORA AXIS | 20" | Gloss Black / Polished Lip |
+| VELORA FORGE | 22" | Black / Gold Accent |
+| VELORA VECTOR | 20" | Hyper Silver |
+| VELORA ARC | 19" | Satin Black |
+| VELORA MONARCH | 21" | Gunmetal Grey |
+| VELORA NOVA | 24" | Chrome |
 
 ## Images
 
-All photography is real, sourced from Unsplash and Pexels under their free
-licenses — no AI-generated imagery anywhere on the site. The five collection wheels
-are isolated, transparent cutouts (see Features above) produced by a disclosed
-three-step pipeline — precrop → local background removal → trim + badge
-anonymization + export — runnable end-to-end with `npm run wheels:isolate`. Car and
-detail photography goes through a simpler crop/resize/WebP pipeline via
-`npm run images:process`. Full attribution, source links, and the reasoning behind
-every crop and badge touch-up are in [`IMAGE_CREDITS.md`](./IMAGE_CREDITS.md).
+All photography and product renders were supplied directly by the project owner
+(none downloaded from the web for this pass) and are used as provided — no logos
+or brand marks are removed, blurred, or altered on any wheel or photo. Full
+source-file mapping is in [`IMAGE_CREDITS.md`](./IMAGE_CREDITS.md).
 
 ## Installation
 

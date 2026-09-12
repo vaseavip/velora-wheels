@@ -9,7 +9,8 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "images:process": "node scripts/process-images.mjs",
-    "wheels:isolate": "node scripts/wheels-1-precrop.mjs && node scripts/wheels-2-bgremove.mjs && node scripts/wheels-3-finalize.mjs"
+    "wheels:export": "node scripts/wheels-export-new.mjs",
+    "photos:process": "node scripts/process-new-photos.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",
@@ -17,7 +18,6 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@imgly/background-removal-node": "^1.4.5",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",

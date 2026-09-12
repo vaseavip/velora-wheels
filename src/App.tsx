@@ -3,6 +3,7 @@ import { Footer } from "./components/Footer";
 import { Hero } from "./sections/Hero";
 import { Collection } from "./sections/Collection";
 import { BrandExperience } from "./sections/BrandExperience";
+import { FindYourFit } from "./sections/FindYourFit";
 import { Craftsmanship } from "./sections/Craftsmanship";
 import { About } from "./sections/About";
 
@@ -17,6 +18,7 @@ function App() {
         <Hero />
         <Collection />
         <BrandExperience />
+        <FindYourFit />
         <Craftsmanship />
         <About />
       </main>

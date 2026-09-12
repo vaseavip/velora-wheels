@@ -153,8 +153,8 @@ export function Hero() {
                   className={`${styles.wheelImg} ${styles.wheelImgOverlay} photo`}
                   src={closeUp.image}
                   alt={closeUp.imageAlt}
-                  width={960}
-                  height={1184}
+                  width={735}
+                  height={1103}
                   loading="lazy"
                   decoding="async"
                 />

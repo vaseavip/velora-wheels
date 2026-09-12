@@ -165,12 +165,37 @@
   font-size: var(--fs-display-lg);
 }
 
+/* ---------- NOVA: full-width, oversized closing statement ---------- */
+.nova {
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: var(--space-2xl);
+}
+
+.nova .wheelWrap {
+  width: min(58vw, 720px);
+  order: 2;
+}
+
+.nova .textBlock {
+  order: 1;
+  align-items: center;
+  text-align: center;
+  margin-bottom: -1rem;
+}
+
+.nova .name {
+  font-size: var(--fs-display-xl);
+}
+
 @media (max-width: 900px) {
   .forge .wheelWrap,
   .vector .wheelWrap,
   .axis .wheelWrap,
   .arc .wheelWrap,
-  .monarch .wheelWrap {
+  .monarch .wheelWrap,
+  .nova .wheelWrap {
     width: min(70vw, 420px);
   }
 

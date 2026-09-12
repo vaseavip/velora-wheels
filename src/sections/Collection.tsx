@@ -3,7 +3,7 @@ import { WheelStage } from "../components/WheelStage";
 import { Reveal } from "../components/Reveal";
 import styles from "./Collection.module.css";
 
-const VARIANTS = ["axis", "forge", "vector", "arc", "monarch"] as const;
+const VARIANTS = ["axis", "forge", "vector", "arc", "monarch", "nova"] as const;
 
 export function Collection() {
   return (

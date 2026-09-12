@@ -24,8 +24,8 @@ export function About() {
 
       <div className={styles.cta}>
         <img
-          src="/images/cars/finalcta.webp"
-          alt="A performance sedan glowing under overhead lights in a night parking structure"
+          src="/images/cars/bmw.webp"
+          alt="Black BMW M4 photographed front 3/4, low angle, alloy wheel prominent"
           className={`${styles.ctaImage} photo`}
           loading="lazy"
           decoding="async"
