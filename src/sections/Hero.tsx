@@ -128,10 +128,10 @@ export function Hero() {
                 <img
                   ref={heroImgRef}
                   className={`${styles.wheelImg} photo`}
-                  src={heroWheel.image}
+                  src={heroWheel.heroImage}
                   alt={`${heroWheel.name}, ${heroWheel.size} wheel in ${heroWheel.finish}`}
-                  width={heroWheel.imageWidth}
-                  height={heroWheel.imageHeight}
+                  width={heroWheel.heroImageWidth}
+                  height={heroWheel.heroImageHeight}
                   fetchPriority="high"
                   decoding="async"
                 />

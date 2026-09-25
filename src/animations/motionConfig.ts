@@ -14,18 +14,19 @@ export const ease = {
 /** GSAP ScrollTrigger `scrub` values — how much the animation lags behind
  * the scrollbar. Lower = tighter/more direct, higher = heavier/more inertia. */
 export const scrub = {
-  /** Pinned physical scenes (Axis roll, Nova finale) — a little lag reads as weight. */
+  /** The Collection's two pinned scene systems (roll + zoom) — a little lag reads as weight. */
   pinned: 0.7,
-  /** Non-pinned emerge reveals — closer to the scrollbar so entries don't feel laggy. */
-  emerge: 0.5,
-  /** Continuous ambient motion (Monarch's drift/light sweep) — slow and heavy. */
+  /** Continuous ambient motion (e.g. the About CTA's parallax push-in) — slow and heavy. */
   ambient: 1.4,
 } as const;
 
-/** Roughly how tall a wheel's own pinned scroll "chapter" is, in viewport heights. */
+/** Roughly how tall each Collection scene system's pinned scroll "chapter"
+ * is, in viewport heights — shared by every wheel using that system. */
 export const pinnedChapterVh = {
-  axis: 260,
-  nova: 220,
+  /** Animation 1 (roll in/settle/roll out) — used by Axis, Vector, Monarch. */
+  roll: 260,
+  /** Animation 2 (cinematic zoom + halo) — used by Forge, Arc, Nova. */
+  zoom: 220,
 } as const;
 
 export const textStagger = {

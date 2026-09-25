@@ -4,7 +4,7 @@
 
 @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
   .wrapper {
-    height: var(--nova-vh, 220vh);
+    height: var(--zoom-vh, 220vh);
   }
 }
 

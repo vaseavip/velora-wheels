@@ -27,3 +27,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Raw/unprocessed source assets — see scripts/process-new-assets.mjs
+velora-wheels/

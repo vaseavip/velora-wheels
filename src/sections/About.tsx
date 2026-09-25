@@ -28,8 +28,8 @@ export function About() {
       <div className={styles.cta}>
         <img
           ref={ctaImageRef}
-          src="/images/cars/bmw.webp"
-          alt="Black BMW M4 photographed front 3/4, low angle, alloy wheel prominent"
+          src="/images/cars/build-to-move.webp"
+          alt="Close rear 3/4 view of a sports car with alloy wheel prominent, angular graphic backdrop"
           className={`${styles.ctaImage} photo`}
           loading="lazy"
           decoding="async"

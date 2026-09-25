@@ -5,20 +5,24 @@ import type { WheelModel } from "../../data/wheels";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { ease, scrub, pinnedChapterVh } from "../../animations/motionConfig";
 import textStyles from "../../components/TextReveal.module.css";
-import styles from "./NovaScene.module.css";
+import styles from "./ZoomScene.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface NovaSceneProps {
+interface ZoomSceneProps {
   wheel: WheelModel;
+  /** Small label above the title — e.g. "Closing the collection" or a chapter number. */
+  eyebrow: string;
 }
 
 /**
- * The Collection's closing chapter: a slow cinematic zoom-in with a soft
+ * "Animation 2" — originally built for Nova, now shared by every wheel that
+ * uses this system (Forge, Arc, Nova): a slow cinematic zoom-in with a soft
  * halo, a held "perfect position" moment, then a slow zoom-out that fades
- * the whole scene — preparing the handoff into Brand Experience next.
+ * the whole scene. Only the wheel image and text differ between instances —
+ * the motion itself is not re-implemented per wheel.
  */
-export function NovaScene({ wheel }: NovaSceneProps) {
+export function ZoomScene({ wheel, eyebrow }: ZoomSceneProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const pinRef = useRef<HTMLDivElement | null>(null);
   const haloRef = useRef<HTMLDivElement | null>(null);
@@ -97,14 +101,14 @@ export function NovaScene({ wheel }: NovaSceneProps) {
     <div
       className={styles.wrapper}
       ref={wrapperRef}
-      style={{ ["--nova-vh" as string]: `${pinnedChapterVh.nova}vh` }}
+      style={{ ["--zoom-vh" as string]: `${pinnedChapterVh.zoom}vh` }}
     >
       <article className={styles.pin} ref={pinRef} aria-label={`${wheel.name}, ${wheel.size} wheel in ${wheel.finish}`}>
         <div className={styles.halo} ref={haloRef} aria-hidden="true" />
 
         <div className={styles.textBlock}>
           <p className={`eyebrow ${styles.eyebrow}`} ref={eyebrowRef}>
-            Closing the collection
+            {eyebrow}
           </p>
           <h3 className={styles.name}>
             <span className={textStyles.lineMask}>

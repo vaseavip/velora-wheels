@@ -5,22 +5,30 @@ import type { WheelModel } from "../../data/wheels";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { ease, scrub, pinnedChapterVh } from "../../animations/motionConfig";
 import textStyles from "../../components/TextReveal.module.css";
-import styles from "./AxisScene.module.css";
+import styles from "./RollScene.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface AxisSceneProps {
+interface RollSceneProps {
   wheel: WheelModel;
+  /** Small label above the title — e.g. "The flagship" or a chapter number. */
+  eyebrow: string;
+  /** Eager/high-priority image loading — only the first instance on the
+   * page (Axis, right after Hero) should set this. */
+  priority?: boolean;
 }
 
 /**
- * The Collection's flagship moment: Axis rolls in from off-screen right,
- * settles center, then rolls out left as the user keeps scrolling — one
- * continuous pinned, scroll-scrubbed timeline (reversible both ways).
- * Rotation is derived from actual travel distance / wheel radius, so it
- * reads as a wheel physically rolling rather than an arbitrary spin.
+ * "Animation 1" — originally built for Axis, now shared by every wheel that
+ * uses this system (Axis, Vector, Monarch): the wheel rolls in from
+ * off-screen right, settles center, then rolls out left as the user keeps
+ * scrolling — one continuous pinned, scroll-scrubbed timeline (reversible
+ * both ways). Rotation is derived from actual travel distance / wheel
+ * radius, so it reads as a wheel physically rolling rather than an
+ * arbitrary spin. Only the wheel image and text differ between instances —
+ * the motion itself is not re-implemented per wheel.
  */
-export function AxisScene({ wheel }: AxisSceneProps) {
+export function RollScene({ wheel, eyebrow, priority = false }: RollSceneProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const pinRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
@@ -32,6 +40,7 @@ export function AxisScene({ wheel }: AxisSceneProps) {
   const specsRef = useRef<HTMLParagraphElement | null>(null);
 
   const reduced = useReducedMotion();
+  const [titleWord1, titleWord2 = ""] = wheel.name.split(" ");
 
   useLayoutEffect(() => {
     if (reduced) return;
@@ -137,24 +146,26 @@ export function AxisScene({ wheel }: AxisSceneProps) {
     <div
       className={styles.wrapper}
       ref={wrapperRef}
-      style={{ ["--axis-vh" as string]: `${pinnedChapterVh.axis}vh` }}
+      style={{ ["--roll-vh" as string]: `${pinnedChapterVh.roll}vh` }}
     >
       <article className={styles.pin} ref={pinRef} aria-label={`${wheel.name}, ${wheel.size} wheel in ${wheel.finish}`}>
         <div className={styles.textBlock}>
           <p className={`eyebrow ${styles.eyebrow}`} ref={eyebrowRef}>
-            The flagship
+            {eyebrow}
           </p>
           <h3 className={styles.name}>
             <span className={textStyles.lineMask}>
               <span className={textStyles.lineInner} ref={titleLine1Ref}>
-                VELORA
+                {titleWord1}
               </span>
             </span>
-            <span className={textStyles.lineMask}>
-              <span className={textStyles.lineInner} ref={titleLine2Ref}>
-                AXIS
+            {titleWord2 && (
+              <span className={textStyles.lineMask}>
+                <span className={textStyles.lineInner} ref={titleLine2Ref}>
+                  {titleWord2}
+                </span>
               </span>
-            </span>
+            )}
           </h3>
           <p className={styles.desc} ref={descRef}>
             {wheel.description}
@@ -172,8 +183,8 @@ export function AxisScene({ wheel }: AxisSceneProps) {
               className={`${styles.image} photo`}
               width={wheel.imageWidth}
               height={wheel.imageHeight}
-              loading="eager"
-              fetchPriority="high"
+              loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : "auto"}
               decoding="async"
             />
           </div>

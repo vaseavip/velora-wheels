@@ -4,7 +4,7 @@
 
 @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
   .wrapper {
-    height: var(--axis-vh, 260vh);
+    height: var(--roll-vh, 260vh);
   }
 }
 

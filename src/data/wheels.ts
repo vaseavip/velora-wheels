@@ -9,6 +9,16 @@ export interface WheelModel {
   imageAlt: string;
   imageWidth: number;
   imageHeight: number;
+  /**
+   * Hero-only override for Axis. The Hero section must keep showing its
+   * original wheel image even after the Collection's Axis asset was
+   * replaced — see IMAGE_CREDITS.md / the asset-swap commit for why these
+   * two are intentionally different files now. Every other wheel has no
+   * Hero presence, so this stays undefined for them.
+   */
+  heroImage?: string;
+  heroImageWidth?: number;
+  heroImageHeight?: number;
 }
 
 export const wheels: WheelModel[] = [
@@ -21,8 +31,11 @@ export const wheels: WheelModel[] = [
     description: "Designed around precision and proportion.",
     image: "/images/wheels/axis.webp",
     imageAlt: "VELORA AXIS alloy wheel in gloss black with a polished lip, multi-spoke mesh design",
-    imageWidth: 500,
-    imageHeight: 500,
+    imageWidth: 1024,
+    imageHeight: 1024,
+    heroImage: "/images/wheels/axis-hero.webp",
+    heroImageWidth: 500,
+    heroImageHeight: 500,
   },
   {
     id: "forge",
@@ -33,8 +46,8 @@ export const wheels: WheelModel[] = [
     description: "Forged for strength, sculpted for speed.",
     image: "/images/wheels/forge.webp",
     imageAlt: "VELORA FORGE alloy wheel in black with gold accent spokes, deep-dish two-tone design",
-    imageWidth: 500,
-    imageHeight: 500,
+    imageWidth: 768,
+    imageHeight: 768,
   },
   {
     id: "vector",
@@ -44,9 +57,9 @@ export const wheels: WheelModel[] = [
     finish: "Hyper Silver",
     description: "Directional design, engineered for flow.",
     image: "/images/wheels/vector.webp",
-    imageAlt: "VELORA VECTOR alloy wheel in hyper silver, directional multi-spoke design with visible caliper",
-    imageWidth: 600,
-    imageHeight: 600,
+    imageAlt: "VELORA VECTOR alloy wheel in hyper silver, directional multi-spoke design",
+    imageWidth: 1000,
+    imageHeight: 1000,
   },
   {
     id: "arc",
@@ -56,9 +69,9 @@ export const wheels: WheelModel[] = [
     finish: "Satin Black",
     description: "Curved lines that hold their shape at speed.",
     image: "/images/wheels/arc.webp",
-    imageAlt: "VELORA ARC alloy wheel in satin black, minimal curved mesh spoke pattern",
-    imageWidth: 500,
-    imageHeight: 500,
+    imageAlt: "VELORA ARC alloy wheel in satin black, curved multi-spoke pattern",
+    imageWidth: 1000,
+    imageHeight: 1000,
   },
   {
     id: "monarch",
@@ -68,9 +81,9 @@ export const wheels: WheelModel[] = [
     finish: "Gunmetal Grey",
     description: "A commanding presence, refined in every spoke.",
     image: "/images/wheels/monarch.webp",
-    imageAlt: "VELORA MONARCH alloy wheel in gunmetal grey, elegant multi-spoke Y-design",
-    imageWidth: 2000,
-    imageHeight: 1880,
+    imageAlt: "VELORA MONARCH alloy wheel in gunmetal grey, elegant multi-spoke design",
+    imageWidth: 767,
+    imageHeight: 700,
   },
   {
     id: "nova",

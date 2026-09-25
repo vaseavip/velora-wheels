@@ -1,12 +1,20 @@
 import { wheels } from "../data/wheels";
 import { TextReveal } from "../components/TextReveal";
-import { AxisScene } from "./collection/AxisScene";
-import { NovaScene } from "./collection/NovaScene";
-import { CollectionEntry } from "./collection/CollectionEntry";
+import { RollScene } from "./collection/RollScene";
+import { ZoomScene } from "./collection/ZoomScene";
 import styles from "./Collection.module.css";
 
 const [axis, forge, vector, arc, monarch, nova] = wheels;
 
+/**
+ * The Collection alternates between exactly two motion systems, in this
+ * fixed order: RollScene ("Animation 1", originally Axis) then ZoomScene
+ * ("Animation 2", originally Nova), repeated —
+ *   Axis(1) → Forge(2) → Vector(1) → Arc(2) → Monarch(1) → Nova(2)
+ * — rather than a bespoke animation per wheel. Each instance only differs
+ * in its image/text; see RollScene.tsx and ZoomScene.tsx for the shared
+ * implementations.
+ */
 export function Collection() {
   return (
     <section id="collection" className={styles.section} aria-labelledby="collection-heading">
@@ -18,12 +26,12 @@ export function Collection() {
       </div>
 
       <div className={styles.list}>
-        <AxisScene wheel={axis} />
-        <CollectionEntry wheel={forge} variant="forge" />
-        <CollectionEntry wheel={vector} variant="vector" />
-        <CollectionEntry wheel={arc} variant="arc" />
-        <CollectionEntry wheel={monarch} variant="monarch" />
-        <NovaScene wheel={nova} />
+        <RollScene wheel={axis} eyebrow="The flagship" priority />
+        <ZoomScene wheel={forge} eyebrow={forge.index} />
+        <RollScene wheel={vector} eyebrow={vector.index} />
+        <ZoomScene wheel={arc} eyebrow={arc.index} />
+        <RollScene wheel={monarch} eyebrow={monarch.index} />
+        <ZoomScene wheel={nova} eyebrow="Closing the collection" />
       </div>
     </section>
   );

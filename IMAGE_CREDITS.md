@@ -1,34 +1,52 @@
 # Image credits
 
 All photography and product renders on this site were supplied directly by the
-project owner and placed in the sibling `velora-wheels/` folder — none were
-downloaded from the web for this pass. No logos or brand marks have been
-removed, blurred, or altered on any wheel or photo; images are used as
-provided, only resized/re-encoded to WebP for web performance.
+project owner and placed in the (gitignored) `velora-wheels/` folder inside
+the project directory — none were downloaded from the web for this pass. No
+logos or brand marks have been removed, blurred, or altered on any wheel or
+photo; images are used as provided, only resized/re-encoded to WebP for web
+performance, with one exception noted below (Axis).
 
 ## Wheel product cutouts (`public/images/wheels/`)
 
-Six real transparent PNG product shots, used as-is:
+Six real transparent PNG product shots:
 
 | File | Source file | Wheel brand shown |
 |---|---|---|
-| `axis.webp` | `21132504e2d2f32591fa90003ab1beec.png` | XXR |
-| `forge.webp` | `b4547c2150e4aa1fc34dc69c322da39d.png` | Asanti |
-| `vector.webp` | `a71653288bdaf628ac0955b6505816b5.png` | NAYA |
-| `arc.webp` | `b81046712075d36500175988de084cc1.png` | (unbranded matte black) |
-| `monarch.webp` | `2b17901952a22cb23fc1307a85b520c3.png` | Gianelle |
-| `nova.webp` | `f2237ce2ced7a0d3ee10bf5a858cb872.png` | XD Series |
+| `axis.webp` | `velora-axis.png` | BBS |
+| `forge.webp` | `velora-forge.png` | (unbranded, gold accent) |
+| `vector.webp` | `velora-vector.png` | (unbranded, gold finish) |
+| `arc.webp` | `velora-arc.png` | Rotiform |
+| `monarch.webp` | `velora-monarch.png` | Rotiform |
+| `nova.webp` | `velora-nova.png` | AR (American Racing) |
 
-Exported by `scripts/wheels-export-new.mjs` (`npm run wheels:export`).
+`velora-axis.png` was supplied with a solid studio background (unlike the
+other five, which were already transparent cutouts). Per the project owner's
+explicit direction, its background was removed locally (`@imgly/background-removal-node`,
+fully offline — see `scripts/axis-bgremove.mjs`, dependency removed again after
+use) to match the site's floating-wheel treatment; the BBS center-cap logo was
+left untouched.
+
+**Hero vs. Collection split:** Hero's wheel image is intentionally a separate,
+untouched file (`public/images/wheels/axis-hero.webp`, a byte-identical copy of
+the pre-existing Axis asset made before this swap) and is not affected by the
+Collection Axis card's new asset above — see `WheelModel.heroImage` in
+`src/data/wheels.ts`.
+
+Processed by `scripts/process-new-assets.mjs`.
 
 ## Car photography (`public/images/cars/`)
 
 | File | Source file |
 |---|---|
-| `bmw.webp` | `bmw.jpg` |
-| `audi.webp` | `audi.jpg` |
-| `mercedes.webp` | `mercedes.jpg` |
-| `bmw-detail.webp` | `Wheel Whisper_ G80's Frontal Forge.jpg` |
+| `bmw.webp` | `bmw.png` |
+| `audi.webp` | `audi.png` |
+| `mercedes.webp` | `mercedes.png` |
+| `build-to-move.webp` | `build-to-move.png` (flattened onto `--color-charcoal`, see script — it's a non-rectangular cutout used as a full-bleed CTA background in `About.tsx`) |
+| `bmw-detail.webp` | `Wheel Whisper_ G80's Frontal Forge.jpg` (carried over from a previous pass; superseded by `bmw.webp` where BMW imagery is currently used) |
+
+`bmw.webp`, `audi.webp`, and `mercedes.webp` above were replaced with new
+supplied photography; processed by `scripts/process-new-assets.mjs`.
 
 ## Brand-fit wheel close-ups (`public/images/fit/`)
 
