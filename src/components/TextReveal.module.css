@@ -1,0 +1,9 @@
+.lineMask {
+  display: block;
+  overflow: hidden;
+}
+
+.lineInner {
+  display: inline-block;
+  will-change: transform, filter, opacity;
+}

@@ -1,5 +1,6 @@
 import { brands } from "../data/brands";
 import { Reveal } from "../components/Reveal";
+import { TextReveal } from "../components/TextReveal";
 import styles from "./BrandExperience.module.css";
 
 const [bmw, mercedes, audi] = brands;
@@ -8,19 +9,20 @@ export function BrandExperience() {
   return (
     <section id="brands" className={styles.section} aria-labelledby="brands-heading">
       <div className="container">
-        <Reveal className={styles.intro}>
-          <p className="eyebrow">Built for the road</p>
-          <h2 id="brands-heading" className={styles.heading}>
-            Designed to complement
-            <br />
-            iconic performance.
-          </h2>
-          <p className={styles.copy}>
+        <div className={styles.intro}>
+          <TextReveal as="p" variant="eyebrow" lines={["Built for the road"]} className="eyebrow" />
+          <TextReveal
+            as="h2"
+            id="brands-heading"
+            lines={["Designed to complement", "iconic performance."]}
+            className={styles.heading}
+          />
+          <Reveal as="p" delay={0.15} className={styles.copy}>
             VELORA wheels are engineered to suit the proportions and stance of the world&rsquo;s
             most recognized performance marques. VELORA is an independent wheel maker and is not
             affiliated with or endorsed by these manufacturers.
-          </p>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
 
       <div className={`${styles.grid} container`}>

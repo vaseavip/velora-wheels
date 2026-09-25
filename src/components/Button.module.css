@@ -10,11 +10,16 @@
   text-transform: uppercase;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
+  /* Note: no `transform` here — the magnetic-hover hook drives transform
+     via GSAP on fine pointers, and an inline style always wins over a
+     class rule, so a CSS transform transition here would silently never
+     apply once the hook has touched the element. Press feedback uses
+     `filter` instead, which stays conflict-free either way. */
   transition:
     background-color var(--dur-fast) var(--ease-soft),
     border-color var(--dur-fast) var(--ease-soft),
     color var(--dur-fast) var(--ease-soft),
-    transform var(--dur-fast) var(--ease-soft);
+    filter var(--dur-fast) var(--ease-soft);
 }
 
 .button svg {
@@ -28,7 +33,7 @@
 }
 
 .button:active {
-  transform: translateY(1px);
+  filter: brightness(0.9);
 }
 
 .outline {

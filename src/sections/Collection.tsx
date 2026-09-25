@@ -1,38 +1,29 @@
 import { wheels } from "../data/wheels";
-import { WheelStage } from "../components/WheelStage";
-import { Reveal } from "../components/Reveal";
+import { TextReveal } from "../components/TextReveal";
+import { AxisScene } from "./collection/AxisScene";
+import { NovaScene } from "./collection/NovaScene";
+import { CollectionEntry } from "./collection/CollectionEntry";
 import styles from "./Collection.module.css";
 
-const VARIANTS = ["axis", "forge", "vector", "arc", "monarch", "nova"] as const;
+const [axis, forge, vector, arc, monarch, nova] = wheels;
 
 export function Collection() {
   return (
     <section id="collection" className={styles.section} aria-labelledby="collection-heading">
       <div className="container">
-        <Reveal className={styles.intro}>
-          <p className="eyebrow">Featured wheels</p>
-          <h2 id="collection-heading" className={styles.heading}>
-            The Collection
-          </h2>
-        </Reveal>
+        <div className={styles.intro}>
+          <TextReveal as="p" variant="eyebrow" lines={["Featured wheels"]} className="eyebrow" />
+          <TextReveal as="h2" lines={["The Collection"]} id="collection-heading" className={styles.heading} />
+        </div>
       </div>
 
       <div className={styles.list}>
-        {wheels.map((wheel, index) => (
-          <article key={wheel.id} className={`${styles.entry} ${styles[VARIANTS[index]]}`}>
-            <Reveal as="div" className={styles.wheelWrap} y={36}>
-              <WheelStage wheel={wheel} maxOffset={12} />
-            </Reveal>
-            <Reveal as="div" className={styles.textBlock} delay={0.08}>
-              <span className={styles.index}>{wheel.index}</span>
-              <h3 className={styles.name}>{wheel.name}</h3>
-              <p className={styles.specs}>
-                {wheel.size} &middot; {wheel.finish}
-              </p>
-              <p className={styles.desc}>{wheel.description}</p>
-            </Reveal>
-          </article>
-        ))}
+        <AxisScene wheel={axis} />
+        <CollectionEntry wheel={forge} variant="forge" />
+        <CollectionEntry wheel={vector} variant="vector" />
+        <CollectionEntry wheel={arc} variant="arc" />
+        <CollectionEntry wheel={monarch} variant="monarch" />
+        <NovaScene wheel={nova} />
       </div>
     </section>
   );

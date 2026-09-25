@@ -1,0 +1,108 @@
+.wrapper {
+  position: relative;
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .wrapper {
+    height: var(--axis-vh, 260vh);
+  }
+}
+
+.pin {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-inline: var(--edge-pad);
+}
+
+.textBlock {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  width: min(34vw, 420px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.2rem;
+}
+
+.name {
+  font-size: var(--fs-display-lg);
+  letter-spacing: -0.01em;
+  line-height: 0.98;
+}
+
+.desc {
+  margin-top: 0.6rem;
+  max-width: 30ch;
+  color: var(--color-text-muted);
+}
+
+.specs {
+  margin-top: 0.2rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.wheelWrap {
+  width: min(40vw, 460px);
+  will-change: transform, filter;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.65));
+}
+
+@media (max-width: 899px) {
+  .wrapper {
+    height: auto;
+  }
+
+  .pin {
+    height: auto;
+    flex-direction: column;
+    padding-block: var(--space-2xl);
+    gap: var(--space-lg);
+  }
+
+  .textBlock {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .desc {
+    max-width: 32ch;
+  }
+
+  .stage {
+    width: 100%;
+    height: auto;
+  }
+
+  .wheelWrap {
+    width: min(72vw, 360px);
+  }
+}

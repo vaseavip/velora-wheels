@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { brandFits } from "../data/fit";
-import { Reveal } from "../components/Reveal";
+import { TextReveal } from "../components/TextReveal";
 import styles from "./FindYourFit.module.css";
 
 export function FindYourFit() {
@@ -9,12 +9,10 @@ export function FindYourFit() {
   return (
     <section className={styles.section} aria-labelledby="fit-heading">
       <div className="container">
-        <Reveal className={styles.intro}>
-          <p className="eyebrow">Find your fit</p>
-          <h2 id="fit-heading" className={styles.heading}>
-            The right fit for every stance.
-          </h2>
-        </Reveal>
+        <div className={styles.intro}>
+          <TextReveal as="p" variant="eyebrow" lines={["Find your fit"]} className="eyebrow" />
+          <TextReveal as="h2" id="fit-heading" lines={["The right fit for every stance."]} className={styles.heading} />
+        </div>
 
         <div className={styles.stage}>
           {/* Plain div, not a scroll-triggered Reveal: this is the section's

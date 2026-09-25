@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { useMagneticHover } from "../hooks/useMagneticHover";
 import styles from "./Button.module.css";
 
 interface SharedProps {
@@ -17,10 +18,13 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export function Button({ variant = "outline", children, icon, className, ...rest }: ButtonProps) {
   const classes = [styles.button, styles[variant], className].filter(Boolean).join(" ");
+  // Ghost buttons are inline text links, not filled targets — a magnetic
+  // pull there would read as a bug, not a feature.
+  const magneticRef = useMagneticHover<HTMLAnchorElement & HTMLButtonElement>(variant === "ghost" ? 0 : 8);
 
   if ("href" in rest && rest.href) {
     return (
-      <a className={classes} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a ref={magneticRef} className={classes} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
         <span>{children}</span>
         {icon ?? <ArrowIcon />}
       </a>
@@ -28,7 +32,7 @@ export function Button({ variant = "outline", children, icon, className, ...rest
   }
 
   return (
-    <button className={classes} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button ref={magneticRef} className={classes} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
       <span>{children}</span>
       {icon ?? <ArrowIcon />}
     </button>

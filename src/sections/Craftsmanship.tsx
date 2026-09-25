@@ -1,24 +1,26 @@
 import { detailShots } from "../data/details";
 import { DetailReveal } from "../components/DetailReveal";
 import { Reveal } from "../components/Reveal";
+import { TextReveal } from "../components/TextReveal";
 import styles from "./Craftsmanship.module.css";
 
 export function Craftsmanship() {
   return (
     <section id="experience" className={styles.section} aria-labelledby="craft-heading">
       <div className="container">
-        <Reveal className={styles.intro}>
-          <p className="eyebrow">Precision</p>
-          <h2 id="craft-heading" className={styles.heading}>
-            Details define
-            <br />
-            everything.
-          </h2>
-          <p className={styles.copy}>
+        <div className={styles.intro}>
+          <TextReveal as="p" variant="eyebrow" lines={["Precision"]} className="eyebrow" />
+          <TextReveal
+            as="h2"
+            id="craft-heading"
+            lines={["Details define", "everything."]}
+            className={styles.heading}
+          />
+          <Reveal as="p" delay={0.15} className={styles.copy}>
             Every VELORA wheel is judged in the smallest details &mdash; the line of a spoke, the
             edge of a machined face, the fit of a bolt. Nothing is accidental.
-          </p>
-        </Reveal>
+          </Reveal>
+        </div>
 
         <div className={styles.grid}>
           {detailShots.map((shot, index) => (

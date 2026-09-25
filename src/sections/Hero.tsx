@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect } from "react";
 import { Button } from "../components/Button";
+import { TextReveal } from "../components/TextReveal";
 import { usePointerParallax } from "../hooks/usePointerParallax";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { wheels } from "../data/wheels";
@@ -101,11 +102,13 @@ export function Hero() {
         <div className={styles.grid}>
           <div className={styles.copy} ref={titleARef}>
             <p className="eyebrow">Precision in motion</p>
-            <h1 className={styles.title}>
-              Engineered
-              <br />
-              to turn heads.
-            </h1>
+            <TextReveal
+              as="h1"
+              lines={["Engineered", "to turn heads."]}
+              trigger="mount"
+              className={styles.title}
+              stagger={0.1}
+            />
             <p className={styles.subtitle}>
               Premium wheels designed for those who notice the details.
             </p>
