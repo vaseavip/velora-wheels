@@ -27,6 +27,15 @@ fully offline — see `scripts/axis-bgremove.mjs`, dependency removed again afte
 use) to match the site's floating-wheel treatment; the BBS center-cap logo was
 left untouched.
 
+All six wheel cutouts (Axis's background removal especially) still left a
+faint light-colored fringe of leftover-background pixels around the wheel's
+silhouette, visible as a halo against the site's dark background. Cleaned up
+with `scripts/dehalo-wheels.mjs`, which zeroes the alpha of any semi-transparent
+pixel that's still close to the original light studio background color,
+leaving genuine dark anti-aliased wheel-edge pixels untouched. No wheel
+geometry, color, or logo was altered — only the transparency of stray
+background-colored edge pixels.
+
 **Hero vs. Collection split:** Hero's wheel image is intentionally a separate,
 untouched file (`public/images/wheels/axis-hero.webp`, a byte-identical copy of
 the pre-existing Axis asset made before this swap) and is not affected by the
@@ -39,14 +48,15 @@ Processed by `scripts/process-new-assets.mjs`.
 
 | File | Source file |
 |---|---|
-| `bmw.webp` | `bmw.png` |
-| `audi.webp` | `audi.png` |
-| `mercedes.webp` | `mercedes.png` |
+| `bmw.webp` | `bmw.jpg` (original on-location photo — the newly supplied `bmw.png` studio cutout was tried and then reverted at the project owner's request) |
+| `audi.webp` | `audi.jpg` (same — reverted from `audi.png`) |
+| `mercedes.webp` | `mercedes.jpg` (same — reverted from `mercedes.png`) |
 | `build-to-move.webp` | `build-to-move.png` (flattened onto `--color-charcoal`, see script — it's a non-rectangular cutout used as a full-bleed CTA background in `About.tsx`) |
-| `bmw-detail.webp` | `Wheel Whisper_ G80's Frontal Forge.jpg` (carried over from a previous pass; superseded by `bmw.webp` where BMW imagery is currently used) |
+| `bmw-detail.webp` | `Wheel Whisper_ G80's Frontal Forge.jpg` (carried over from a previous pass) |
 
-`bmw.webp`, `audi.webp`, and `mercedes.webp` above were replaced with new
-supplied photography; processed by `scripts/process-new-assets.mjs`.
+`bmw.webp`, `audi.webp`, and `mercedes.webp` are the site's original full-bleed
+on-location photography, which fits the `BrandExperience` cards' full-bleed
+`object-fit: cover` design better than the newer studio cutouts did.
 
 ## Brand-fit wheel close-ups (`public/images/fit/`)
 

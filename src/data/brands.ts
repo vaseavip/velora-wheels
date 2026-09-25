@@ -14,7 +14,7 @@ export const brands: BrandFeature[] = [
     tagline: "Precision meets presence.",
     tag: "Precision / Performance",
     image: "/images/cars/bmw.webp",
-    imageAlt: "White BMW M4 coupe, front 3/4 studio cutout, alloy wheel prominent",
+    imageAlt: "Black BMW M4 photographed front 3/4, low angle, alloy wheel prominent",
   },
   {
     id: "mercedes",
@@ -22,7 +22,7 @@ export const brands: BrandFeature[] = [
     tagline: "Luxury, uncompromised.",
     tag: "Luxury / Presence",
     image: "/images/cars/mercedes.webp",
-    imageAlt: "White Mercedes-AMG GT convertible, front 3/4 studio cutout, alloy wheel prominent",
+    imageAlt: "Dark Mercedes-Benz photographed at a low angle against concrete architecture",
   },
   {
     id: "audi",
@@ -30,6 +30,6 @@ export const brands: BrandFeature[] = [
     tagline: "Balance through design.",
     tag: "Balance / Design",
     image: "/images/cars/audi.webp",
-    imageAlt: "Black Audi R8 coupe, front 3/4 studio cutout, alloy wheel prominent",
+    imageAlt: "Black Audi RS photographed front 3/4 in golden-hour light, alloy wheel prominent",
   },
 ];

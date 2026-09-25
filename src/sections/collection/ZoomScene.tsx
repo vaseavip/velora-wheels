@@ -20,7 +20,8 @@ interface ZoomSceneProps {
  * uses this system (Forge, Arc, Nova): a slow cinematic zoom-in with a soft
  * halo, a held "perfect position" moment, then a slow zoom-out that fades
  * the whole scene. Only the wheel image and text differ between instances —
- * the motion itself is not re-implemented per wheel.
+ * the motion itself is not re-implemented per wheel. Text sits on the left,
+ * the wheel on the right (mirrors RollScene's split layout).
  */
 export function ZoomScene({ wheel, eyebrow }: ZoomSceneProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -28,10 +29,12 @@ export function ZoomScene({ wheel, eyebrow }: ZoomSceneProps) {
   const haloRef = useRef<HTMLDivElement | null>(null);
   const wheelWrapRef = useRef<HTMLDivElement | null>(null);
   const eyebrowRef = useRef<HTMLParagraphElement | null>(null);
-  const titleRef = useRef<HTMLSpanElement | null>(null);
+  const titleLine1Ref = useRef<HTMLSpanElement | null>(null);
+  const titleLine2Ref = useRef<HTMLSpanElement | null>(null);
   const descRef = useRef<HTMLParagraphElement | null>(null);
 
   const reduced = useReducedMotion();
+  const [titleWord1, titleWord2 = ""] = wheel.name.split(" ");
 
   useLayoutEffect(() => {
     if (reduced) return;
@@ -40,7 +43,7 @@ export function ZoomScene({ wheel, eyebrow }: ZoomSceneProps) {
 
     mm.add("(min-width: 900px)", () => {
       const ctx = gsap.context(() => {
-        const textEls = [eyebrowRef.current, titleRef.current, descRef.current];
+        const textEls = [eyebrowRef.current, titleLine1Ref.current, titleLine2Ref.current, descRef.current];
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -74,7 +77,7 @@ export function ZoomScene({ wheel, eyebrow }: ZoomSceneProps) {
     mm.add("(max-width: 899px)", () => {
       const ctx = gsap.context(() => {
         gsap.set(pinRef.current, { position: "relative" });
-        gsap.set([eyebrowRef.current, titleRef.current, descRef.current], { autoAlpha: 1, y: 0 });
+        gsap.set([eyebrowRef.current, titleLine1Ref.current, titleLine2Ref.current, descRef.current], { autoAlpha: 1, y: 0, yPercent: 0, filter: "blur(0px)" });
         gsap.set(haloRef.current, { autoAlpha: 0.2 });
 
         gsap.fromTo(
@@ -104,18 +107,23 @@ export function ZoomScene({ wheel, eyebrow }: ZoomSceneProps) {
       style={{ ["--zoom-vh" as string]: `${pinnedChapterVh.zoom}vh` }}
     >
       <article className={styles.pin} ref={pinRef} aria-label={`${wheel.name}, ${wheel.size} wheel in ${wheel.finish}`}>
-        <div className={styles.halo} ref={haloRef} aria-hidden="true" />
-
         <div className={styles.textBlock}>
           <p className={`eyebrow ${styles.eyebrow}`} ref={eyebrowRef}>
             {eyebrow}
           </p>
           <h3 className={styles.name}>
             <span className={textStyles.lineMask}>
-              <span className={textStyles.lineInner} ref={titleRef}>
-                {wheel.name}
+              <span className={textStyles.lineInner} ref={titleLine1Ref}>
+                {titleWord1}
               </span>
             </span>
+            {titleWord2 && (
+              <span className={textStyles.lineMask}>
+                <span className={textStyles.lineInner} ref={titleLine2Ref}>
+                  {titleWord2}
+                </span>
+              </span>
+            )}
           </h3>
           <p className={styles.desc} ref={descRef}>
             {wheel.description}
@@ -123,6 +131,7 @@ export function ZoomScene({ wheel, eyebrow }: ZoomSceneProps) {
         </div>
 
         <div className={styles.stage}>
+          <div className={styles.halo} ref={haloRef} aria-hidden="true" />
           <div className={styles.wheelWrap} ref={wheelWrapRef}>
             <img
               src={wheel.image}
